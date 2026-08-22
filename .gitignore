@@ -1,0 +1,25 @@
+# Secrets & env
+.env
+*.tfvars
+jenkins-key.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+# .gitignore
+__pycache__/
+*.pyc
+.env
+venv/
+node_modules/
+restart.sh
