@@ -7,15 +7,17 @@ pipeline {
     REPO       = "us-central1-docker.pkg.dev/${PROJECT_ID}/ai-sre-images"
     CLUSTER    = 'ai-sre-cluster'
   }
-  stage('Authenticate to GCP') {
-    steps {
-      sh '''
-        gcloud config set project $PROJECT_ID
-        gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
-        gcloud container clusters get-credentials $CLUSTER --region $REGION
+
+  stages {
+    stage('Authenticate to GCP') {
+      steps {
+        sh '''
+          gcloud config set project $PROJECT_ID
+          gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
+          gcloud container clusters get-credentials $CLUSTER --region $REGION
         '''
+      }
     }
-  }
 
     stage('Build & Push Images') {
       steps {
@@ -42,7 +44,11 @@ pipeline {
   }
 
   post {
-    success { echo "✅ Deployed build ${BUILD_NUMBER} successfully!" }
-    failure { echo "❌ Build ${BUILD_NUMBER} failed." }
+    success {
+      echo "✅ Deployed build ${BUILD_NUMBER} successfully!"
+    }
+    failure {
+      echo "❌ Build ${BUILD_NUMBER} failed."
+    }
   }
-
+}
