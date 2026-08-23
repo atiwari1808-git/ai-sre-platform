@@ -45,5 +45,4 @@ pipeline {
     success { echo "✅ Deployed build ${BUILD_NUMBER} successfully!" }
     failure { echo "❌ Build ${BUILD_NUMBER} failed." }
   }
-}
 
