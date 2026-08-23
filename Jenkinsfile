@@ -3,13 +3,17 @@ pipeline {
 
   environment {
     PROJECT_ID = credentials('gcp-project-id')
-    REGION     = 'us-central1'
+    REGION     = 'us-central1-a'
     REPO       = "us-central1-docker.pkg.dev/${PROJECT_ID}/ai-sre-images"
     CLUSTER    = 'ai-sre-cluster'
   }
 
+<<<<<<< HEAD
   stages {                                    // <-- ADDED: opens the stages block
 
+=======
+  stages {
+>>>>>>> 1d61d82ba43d5174c7ddd632715fba186eee0c7a
     stage('Authenticate to GCP') {
       steps {
         sh '''
@@ -46,8 +50,11 @@ pipeline {
   }                                           // <-- ADDED: closes the stages block
 
   post {
-    success { echo "✅ Deployed build ${BUILD_NUMBER} successfully!" }
-    failure { echo "❌ Build ${BUILD_NUMBER} failed." }
+    success {
+      echo "✅ Deployed build ${BUILD_NUMBER} successfully!"
+    }
+    failure {
+      echo "❌ Build ${BUILD_NUMBER} failed."
+    }
   }
 }
-
