@@ -8,7 +8,7 @@ from app.k8s_actions import restart_deployment
 # The Gemini chat model for reasoning. Reads GOOGLE_API_KEY from env.
 llm = ChatGoogleGenerativeAI(model="gemini-3.6-flash")
 
-AUTO_REMEDIATE = os.getenv("AUTO_REMEDIATE", "false").lower() == "true"
+AUTO_REMEDIATE = os.getenv("AUTO_REMEDIATE", "true").lower() == "true"
 
 class AgentState(TypedDict):
     error_message: str
